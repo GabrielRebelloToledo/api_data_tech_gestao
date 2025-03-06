@@ -1,29 +1,26 @@
-FROM node:lts AS build
+FROM node:20-alpine
 
-WORKDIR /build
-
-COPY package.json .
-RUN npm install
-
-COPY src/ src/
-COPY tsconfig.json tsconfig.json
-COPY tsconfig.build.json tsconfig.build.json
-
-RUN npm run build
-
-FROM node:lts-alpine AS production
-
+# Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
 
-COPY --from=build build/package*.json .
+# Copia o package.json e o package-lock.json (se existir)
+COPY package*.json ./
 
-RUN npm ci --omit=dev
+# Instala as dependências
+RUN npm install --omit=dev
 
-COPY --from=build build/dist dist/
+# Copia o restante do código da aplicação
+COPY . .
 
-CMD ["node", "./gestao_data_tech_sistemas/api_data_tech_gestao/app.js"]
+# Define a variável de ambiente para produção
+ENV NODE_ENV=production
 
+# Expõe a porta em que a API será executada
 EXPOSE 3000
+
+# Comando para iniciar a aplicação
+CMD ["node", "app.js"]
+
 
 
 --docker build -t api-chamados .

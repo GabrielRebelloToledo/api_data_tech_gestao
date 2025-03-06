@@ -1,0 +1,9 @@
+*** SIADE ***
+
+
+IF(Pdes('PARC.AD_NPTA','TGFPAR PARC','PARC.CODPARC='+&Pdes('CAB.CODPARC','TGFCAB CAB','CAB.NUNOTA='+&TGFCAB.NUNOTA)) == null, 'NOTA FISCAL EMITIDA CONFORME ESTABELECIDO NA CLÁUSULA TERCEIRA DO AJUSTE SINIEF N 36/21 - Portaria de Lavra nº ... de .../.../..., DOU.../.../... ou Guia de Utilização nº ... de .../.../... (Processo nº ...)', 'Operação com pagamento do imposto diferido - Regime especial/PTA nº ' + Pdes('PARC.AD_NPTA','TGFPAR PARC','PARC.CODPARC='+&Pdes('CAB.CODPARC','TGFCAB CAB','CAB.NUNOTA='+&TGFCAB.NUNOTA)) + ', NOTA FISCAL EMITIDA CONFORME ESTABELECIDO NA CLÁUSULA TERCEIRA DO AJUSTE SINIEF N 36/21')
+
+
+
+
+

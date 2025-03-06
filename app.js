@@ -12,6 +12,7 @@ import calledRoutes from './src/modules/called/routes/called.routes.js';
 import depComp from './src/modules/companies/routes/companies-departments.routes.js'
 import departmentRoutes from './src/modules/departments/routes/departments.routes.js'
 import situationRoutes from './src/modules/situation/routes/situations.routes.js'
+import path from "path";
 
 
 import corsConfig from './src/config/cors.config.js';
@@ -29,9 +30,16 @@ const app = express();
 app.use(cors(corsConfig));
 app.use(express.json());
 
-app.get('/', (req, res) => {
+/* app.get('/', (req, res) => {
     res.send('Olá, Mundo!');
-});
+}); */
+
+// Servir arquivos estáticos
+app.use(express.static("public/browser"));
+/* app.get("*", (req, res) => {
+    res.sendFile(path.resolve("public/browser/index.html"));
+}); */
+
 
 app.use(
     helmet({
@@ -42,17 +50,17 @@ app.use(
     })
 );
 
-app.use('/sessions', userSessions);
-app.use('/companies', companies);
-app.use('/usercompanies', userscompanie);
-app.use('/upload',uploadRoutes);
+app.use('/api/sessions', userSessions);
+app.use('/api//companies', companies);
+app.use('/api/usercompanies', userscompanie);
+app.use('/api/upload', uploadRoutes);
 
-app.use('/called',calledRoutes);
+app.use('/api/called', calledRoutes);
 
-app.use('/compdep', depComp);
-app.use('/departments', departmentRoutes)
+app.use('/api/compdep', depComp);
+app.use('/api/departments', departmentRoutes)
 
-app.use('/situations', situationRoutes)
+app.use('/api/situations', situationRoutes)
 
 // Inicializar o banco de dados
 initializeDatabase();

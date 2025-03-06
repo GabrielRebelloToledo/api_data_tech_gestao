@@ -23,6 +23,8 @@ COPY --from=build build/dist dist/
 
 CMD ["node", "./gestao_data_tech_sistemas/api_data_tech_gestao/app.js"]
 
-EXPOSE 4000
+EXPOSE 3000
 
 
+--docker build -t api-chamados .
+--docker run -d -p 3000:4000 api-chamados

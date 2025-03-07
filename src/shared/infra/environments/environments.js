@@ -34,8 +34,8 @@ export const initializeDatabase = async () => {
 
 
 const options = {
-    key: fs.readFileSync('cantina.pem'),  // Rota para o arquivo PEM combinado (chave privada e certificado)
-    cert: fs.readFileSync('cantina.pem'), // Rota para o arquivo PEM combinado (chave privada e certificado)
+    key: fs.readFileSync('/etc/letsencrypt/live/api.gestao.datatechsistemas.com.br/privkey.pem'),  // Chave privada do Certbot
+    cert: fs.readFileSync('/etc/letsencrypt/live/api.gestao.datatechsistemas.com.br/fullchain.pem'), // Certificado do Certbot
 };
 
 // Função para iniciar o servidor

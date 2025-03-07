@@ -10,4 +10,11 @@ services:
       - "3000"
     ports:
       - "3000:3000"
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:ro  # Mapeando o diretório dos certificados
+    networks:
+      - app_network  # Definindo uma rede (caso você precise de outras interações entre containers)
     restart: unless-stopped
+networks:
+  app_network:
+    driver: bridge

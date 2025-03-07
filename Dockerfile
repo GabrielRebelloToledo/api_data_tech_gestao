@@ -1,19 +1,16 @@
-FROM node:20-alpine
+FROM node:18-alpine
 
 # Define o diretório de trabalho dentro do contêiner
-WORKDIR /app
+WORKDIR /home/node/app
 
 # Copia o package.json e o package-lock.json (se existir)
 COPY package*.json ./
 
 # Instala as dependências
-RUN npm install --omit=dev
+RUN npm install
 
 # Copia o restante do código da aplicação
-COPY . .
-
-# Define a variável de ambiente para produção
-ENV NODE_ENV=production
+COPY --chown=node:node . .
 
 # Expõe a porta em que a API será executada
 EXPOSE 3000
@@ -23,5 +20,4 @@ CMD ["node", "app.js"]
 
 
 
---docker build -t api-chamados .
---docker run -d -p 3000:4000 api-chamados
+

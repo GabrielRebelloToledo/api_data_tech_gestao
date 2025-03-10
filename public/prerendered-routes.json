@@ -1,9 +1,0 @@
-{
-  "routes": [
-    "/",
-    "/companies",
-    "/departments",
-    "/inicio",
-    "/view"
-  ]
-}

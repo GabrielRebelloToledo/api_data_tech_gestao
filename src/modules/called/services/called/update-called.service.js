@@ -40,8 +40,6 @@ class UpdateCalledService {
     
     const called = await show.executeShowUpdateResp(id);
 
-
-
      if (!called) {
       return { success: false, message: new AppError(AppErrorTypes.companie.notFound, NOT_FOUND) };
     }else{

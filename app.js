@@ -51,7 +51,7 @@ app.use(
 );
 
 app.use('/api/sessions', userSessions);
-app.use('/api//companies', companies);
+app.use('/api/companies', companies);
 app.use('/api/usercompanies', userscompanie);
 app.use('/api/upload', uploadRoutes);
 

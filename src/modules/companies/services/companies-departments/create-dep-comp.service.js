@@ -13,7 +13,7 @@ class CreateDepCompanieService {
         this.companieRepository = AppDataSource.getRepository(CompanieDep);
       }
     
-      async execute({ name, cnpj, adress, email, telephone }) {
+      async execute({ departmentId, companieId }) {
         // Verificar se o usuário já existe
          const companieExists = await this.companieRepository.findOneBy({ cnpj });
     
@@ -25,7 +25,7 @@ class CreateDepCompanieService {
         
         // Criar o novo usuário
         const companie = this.companieRepository.create({
-            name, cnpj, adress, email, telephone
+          departmentId, companieId
         });
     
         // Salvar no banco

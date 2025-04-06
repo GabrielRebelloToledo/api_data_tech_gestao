@@ -48,12 +48,6 @@ export default new EntitySchema({
     }
   },
   relations: {
-    companie: {
-      type: 'many-to-one',
-      target: 'Companie',
-      joinColumn: { name: 'companieId' },
-      onDelete: 'CASCADE',
-    },
     departmentUser: {
       type: 'many-to-one',
       target: 'Department',

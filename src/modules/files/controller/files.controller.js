@@ -12,18 +12,6 @@ class FilesController {
 
         console.log(filePath);
 
-        /*  const { userId, companieId} = request.body;
-     
-         const createUsersCompanieService = container.resolve(CreateFilesService);
-     
-         const userCompanie =  await createUsersCompanieService.execute({ userId, companieId });
-     
-         if(userCompanie && userCompanie.success === false){
-           return response.status(BAD_REQUEST).json({ message: user.message });
-         }
-     
-         return response.status(NO_CONTENT).json(); */
-
         response.json({ message: 'Upload realizado com sucesso', path: request.file });
     }
 

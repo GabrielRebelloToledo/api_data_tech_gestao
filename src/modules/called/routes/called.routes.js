@@ -7,26 +7,34 @@ import UserType from '../../user/enums/EUsers.js';
 
 const calledRoutes = express.Router();
 calledRoutes.post(
-    '/', 
-     /* ensureAuthenticated,
-     ensureAuthorized([UserType.ADMIN]), */
-     CalledControllerController.create
+    '/',
+    ensureAuthenticated,
+    ensureAuthorized([UserType.ADMIN, UserType.USER]),
+    CalledControllerController.create
 
 );
-calledRoutes.get('/listp/:id/:type/:department/:companieId', CalledControllerController.listp);
-calledRoutes.get('/listr/:id/:type/:department/:companieId', CalledControllerController.listr);
-calledRoutes.get('/listm/:id/:type/:department/:companieId', CalledControllerController.listm);
+calledRoutes.get('/listp/:id/:type/:department/:companieId', ensureAuthenticated,
+    ensureAuthorized([UserType.ADMIN, UserType.USER]), CalledControllerController.listp);
+calledRoutes.get('/listr/:id/:type/:department/:companieId', ensureAuthenticated,
+    ensureAuthorized([UserType.ADMIN, UserType.USER]), CalledControllerController.listr);
+calledRoutes.get('/listm/:id/:type/:department/:companieId', ensureAuthenticated,
+    ensureAuthorized([UserType.ADMIN, UserType.USER]), CalledControllerController.listm);
 
-calledRoutes.get('/listc/:id/:type/:department/:companieId', CalledControllerController.listc);
+calledRoutes.get('/listc/:id/:type/:department/:companieId', ensureAuthenticated,
+    ensureAuthorized([UserType.ADMIN, UserType.USER]), CalledControllerController.listc);
 
 
-calledRoutes.get('/show/:id', CalledControllerController.show);
-calledRoutes.put('/update/:id', CalledControllerController.update);
+calledRoutes.get('/show/:id', ensureAuthenticated,
+    ensureAuthorized([UserType.ADMIN, UserType.USER]), CalledControllerController.show);
+calledRoutes.put('/update/:id', ensureAuthenticated,
+    ensureAuthorized([UserType.ADMIN, UserType.USER]), CalledControllerController.update);
 
 
 //Details
-calledRoutes.get('/list/:id', CalledDetailsControllerController.list);
-calledRoutes.post('/create', CalledDetailsControllerController.create);
+calledRoutes.get('/list/:id', ensureAuthenticated,
+    ensureAuthorized([UserType.ADMIN, UserType.USER]), CalledDetailsControllerController.list);
+calledRoutes.post('/create', ensureAuthenticated,
+    ensureAuthorized([UserType.ADMIN, UserType.USER]), CalledDetailsControllerController.create);
 
 
 

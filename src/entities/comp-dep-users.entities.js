@@ -2,9 +2,10 @@ import { EntitySchema } from 'typeorm';
 
 
 export class CompDepUsers {
-    constructor(id, department) {
-        this.id = id;
-        this.department = department;
+    constructor(idDepCompUser, idDepartComp, userId) {
+        this.idDepCompUser = idDepCompUser;
+        this.idDepartComp = idDepartComp;
+        this.userId = userId;
 
     }
 }

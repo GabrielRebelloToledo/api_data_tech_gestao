@@ -13,7 +13,7 @@ class CreateUsersService {
         this.userRepository = AppDataSource.getRepository(User);
       }
     
-      async execute({ name, email, password, type, department, telephone, companieId }) {
+      async execute({ name, email, password, type, active,telephone,department }) {
         // Verificar se o usuário já existe
          const userExists = await this.userRepository.findOneBy({ email });
     
@@ -32,10 +32,9 @@ class CreateUsersService {
           email,
           password: hashedPassword,
           type,
-          department, 
-          telephone, 
-          companieId
-          
+          active,
+          telephone,
+          department
         });
     
         // Salvar no banco

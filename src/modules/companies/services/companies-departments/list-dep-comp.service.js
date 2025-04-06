@@ -12,12 +12,13 @@ class ListDepCompaniesService {
   }
 
   async execute(companieId) {
-    console.log(companieId)
+    /* console.log(companieId) */
     const user = await this.companieRepository.find({
       where: { companieId: companieId },
       relations:['department']
     });
-
+   /*  console.log(user) */
+    
     if (!user) {
       throw new AppError(AppErrorTypes.users.notFound, NOT_FOUND);
     }

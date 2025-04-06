@@ -1,6 +1,6 @@
 import AppDataSource from '../../../../shared/infra/environments/environments.js';  // Importa a conexão do banco
 
-import { User } from '../../../../entities/user.entities.js';
+import UserCompanie from '../../../../entities/user-companie.entities.js';
 
 
 
@@ -8,14 +8,14 @@ import { User } from '../../../../entities/user.entities.js';
 class DeleteUsersCompanieService {
     constructor() {
         // Repositório do TypeORM para a entidade User
-        this.userRepository = AppDataSource.getRepository(User);
-    
+        this.userRepository = AppDataSource.getRepository(UserCompanie);
+
     }
-    
-     async execute(id) {
+
+    async execute(id, idcomp) {
         console.log("Cheguei no delete")
-        await this.userRepository.delete({ id: id });
-      }
+        await this.userRepository.delete({ userId: id, companieId: idcomp });
+    }
 
 }
 

@@ -5,24 +5,26 @@ import AppErrorTypes from '../../../../shared/errors/app-error-types.js';
 import { NOT_FOUND } from '../../../../shared/infra/constants/http-status-code.constants.js';
 
 class ListUsersService {
-    constructor() {
-        // Repositório do TypeORM para a entidade User
-        this.userRepository = AppDataSource.getRepository(User);
-    }
+  constructor() {
+    // Repositório do TypeORM para a entidade User
+    this.userRepository = AppDataSource.getRepository(User);
+  }
 
-     async execute(userId) {
-        const user = await this.userRepository.find({
-          where: { type: 'VENDEDOR' }
-        });
-    
-        if (!user) {
-          throw new AppError(AppErrorTypes.users.notFound, NOT_FOUND);
-        }
-    
-        return user;
+  async execute() {
+    const user = await this.userRepository.find(
+      {
+        relations: ['departmentUser']
       }
+    );
 
-   
+     if (!user) {
+      throw new AppError(AppErrorTypes.users.notFound, NOT_FOUND);
+    } 
+
+    return user;
+  }
+
+
 }
 
 export default ListUsersService;

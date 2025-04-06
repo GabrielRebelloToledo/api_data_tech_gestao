@@ -23,7 +23,7 @@ class CreateUsersCompanieService {
 
         // Salvar no banco
         const usercompanie = await this.userRepository.save(usercompaniecreate);
-        console.log(usercompanie);
+        /* console.log(usercompanie); */
         return usercompanie;
     }
 }

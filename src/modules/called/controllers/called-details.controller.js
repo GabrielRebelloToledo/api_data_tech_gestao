@@ -12,7 +12,7 @@ class CalledController {
 
  async create(request, response) {
 
-        console.log(request.body);
+        /* console.log(request.body); */
 
         const { calledId, detail, file1, file2, file3, file4, status } = request.body;
 

@@ -15,7 +15,7 @@ class ShowCallService {
     async execute(id) {
         const companie = await this.companieCalled.findOne({
             where: { id }, 
-            relations: ['primaryCompanie', 'user', 'statusId']
+            relations: ['primaryCompanie', 'user', 'statusId', 'userResp']
           });
           
         if (!companie) {

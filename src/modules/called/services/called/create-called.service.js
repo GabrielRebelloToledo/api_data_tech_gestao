@@ -33,7 +33,7 @@ class CreateCalledService {
     
         // Salvar no banco
        const calledCreate = await this.companieCalled.save(called);
-        console.log(calledCreate)
+       /*  console.log(calledCreate) */
         // Retornar a empresa cadastrada
         return calledCreate;
       }

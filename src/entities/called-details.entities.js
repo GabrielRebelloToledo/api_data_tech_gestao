@@ -26,7 +26,7 @@ export default new EntitySchema({
             type: 'int',
         },
         status: {
-            type: 'varchar',
+            type: 'int',
         },
         detail: {
             type: 'text',
@@ -62,7 +62,7 @@ export default new EntitySchema({
             },
             statusId: {
                 type: 'many-to-one',
-                target: 'Situation',
+                target: 'Status',
                 joinColumn: { name: 'status' },
             }
             

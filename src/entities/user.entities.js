@@ -42,8 +42,9 @@ export default new EntitySchema({
       type: 'varchar',
       nullable: true,
     },
-    companieId: {
-      type: 'int',
+    active: {
+      type: 'varchar',
+      default: "S"
     }
   },
   relations: {
@@ -52,11 +53,6 @@ export default new EntitySchema({
       target: 'Companie',
       joinColumn: { name: 'companieId' },
       onDelete: 'CASCADE',
-    },
-    userCompanie: {
-      type: 'one-to-many',
-      target: 'UserCompanie',
-      inverseSide: 'user',
     },
     departmentUser: {
       type: 'many-to-one',

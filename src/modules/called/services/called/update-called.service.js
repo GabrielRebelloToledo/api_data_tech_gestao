@@ -17,21 +17,21 @@ class UpdateCalledService {
 
     const call = await this.getcallById(req.id);
 
-    console.log("Chegando na minha consulta")
-    console.log(call)
+   /*  console.log("Chegando na minha consulta")
+    console.log(call) */
     if (!call) {
       return {success: false, message: new AppError(AppErrorTypes.companie.notFound, NOT_FOUND)};
     }  
 
     
-    console.log("Chegando no meu req")
+    /* console.log("Chegando no meu req")
     console.log(req.id)
-
-    call.status = "A";
+ */
+    call.status = 2;
     call.userIdResp = req.userId;
     // Salva e retorna o chamado com dono chamado atualizado
 
-     console.log(call)
+   /*   console.log(call) */
     return await this.calledRepository.save(call);
   }
 

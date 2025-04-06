@@ -6,17 +6,17 @@ import UserType from '../enums/EUsers.js';
 const userRoutes = express.Router();
 
 userRoutes.post(
-    '/', 
-    /* ensureAuthenticated,
-    ensureAuthorized([UserType.ADMIN]), */
+    '/',
+    ensureAuthenticated,
+    ensureAuthorized([UserType.ADMIN]),
     UsersCompanieController.create
 
 );
-userRoutes.get('/show/:id', UsersCompanieController.show);
-userRoutes.delete('/delete/:id', UsersCompanieController.delete);
-userRoutes.post('/update/:id', UsersCompanieController.update);
-userRoutes.get('/show/:id', UsersCompanieController.show);
-userRoutes.get('/list', UsersCompanieController.list); 
+userRoutes.get('/show/:id', ensureAuthorized([UserType.ADMIN]),UsersCompanieController.show);
+userRoutes.delete('/delete/:id/:idcomp', ensureAuthorized([UserType.ADMIN]),UsersCompanieController.delete);
+userRoutes.post('/update/:id',ensureAuthorized([UserType.ADMIN]), UsersCompanieController.update);
+userRoutes.get('/show/:id',ensureAuthorized([UserType.ADMIN]), UsersCompanieController.show);
+userRoutes.get('/list', ensureAuthorized([UserType.ADMIN]),UsersCompanieController.list);
 
 
 

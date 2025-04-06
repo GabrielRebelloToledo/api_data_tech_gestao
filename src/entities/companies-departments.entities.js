@@ -2,9 +2,10 @@ import { EntitySchema } from 'typeorm';
 
 
 export class CompDep {
-    constructor(id, department) {
-        this.id = id;
-        this.department = department;
+    constructor(idDepartComp, departmentId, companieId) {
+        this.idDepartComp = idDepartComp;
+        this.departmentId = departmentId;
+        this.companieId = companieId;
 
     }
 }
@@ -24,6 +25,10 @@ export default new EntitySchema({
         },
         companieId: {
             type: 'int',
+        },
+        active: {
+           type: 'varchar',
+           default: "S"
         },
     },
     relations: {

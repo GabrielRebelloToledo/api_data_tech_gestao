@@ -12,8 +12,8 @@ import ListCompaniesService from '../services/list-companies.service.js';
 class CompaniesController {
   async create(request, response) {
 
-    console.log(request.body);
-
+    /* console.log(request.body);
+ */
     const { name, cnpj, adress, email, telephone } = request.body;
 
     const createCompanieService = container.resolve(CreateCompanieService);
@@ -31,7 +31,7 @@ class CompaniesController {
 
     const { id } = request.params;
 
-    console.log(id)
+   /*  console.log(id) */
 
     const showCompanieService = container.resolve(ShowCompaniesService);
 

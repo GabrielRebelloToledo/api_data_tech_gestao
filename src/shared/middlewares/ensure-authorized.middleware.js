@@ -5,7 +5,7 @@ import AppErrorTypes from '../errors/app-error-types.js';
 
 function ensureAuthorized(requiredFeatures) {
   return async function authorize(request, _response, next) {
-    const { id } = request.user;
+    const { id } = request.user || 0;
 
     // Cria uma instância manualmente do serviço ShowUsersService
     const showUsersService = new ShowUsersService();
@@ -14,12 +14,12 @@ function ensureAuthorized(requiredFeatures) {
       const user = await showUsersService.execute(id);
       
 
-    /*   console.log("---------- ensureAuthorized ------------");
-      console.log(user)*/
+     console.log("---------- ensureAuthorized ------------");
+     console.log(Object.values(UserType).includes(user.type))
        // Verifica se o tipo do usuário está em UserType
-       if (!Object.values(UserType).includes(user.type)) {
+       if (Object.values(UserType).includes(user.type)) {
         throw new AppError(AppErrorTypes.sessions.insufficientPrivilege, 403);
-      }
+      } 
   
       return next();
     } catch (error) {

@@ -12,7 +12,7 @@ import ListDepartmentService from '../services/list-departments.service.js';
 class DepartmentsController {
   async create(request, response) {
 
-    console.log(request.body);
+    /* console.log(request.body); */
 
     const { department } = request.body;
 
@@ -31,7 +31,7 @@ class DepartmentsController {
 
     const { id } = request.params;
 
-    console.log(id)
+    /* console.log(id) */
 
     const showCompanieService = container.resolve(ShowDepartmentService);
 

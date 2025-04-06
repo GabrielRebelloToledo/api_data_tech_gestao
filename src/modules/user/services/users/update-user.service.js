@@ -26,7 +26,7 @@ class UpdateUsersService {
 
 
     if (!user) {
-      return {success: false, message: new AppError(AppErrorTypes.users.notFound, NOT_FOUND)};
+      return { success: false, message: new AppError(AppErrorTypes.users.notFound, NOT_FOUND) };
     }
 
     if (users.name) {
@@ -47,6 +47,24 @@ class UpdateUsersService {
       await this.updatePassword(user, users.password);
     }
 
+    if (users.type) {
+      console.log("Atualizando Grupo");
+      await this.updateType(user, users.type);
+    }
+
+    if (users.active) {
+      console.log("Atualizando Ativo");
+      await this.updateActive(user, users.active);
+    }
+    if (users.telephone) {
+      console.log("Atualizando Telefone");
+      await this.updateTelephone(user, users.telephone);
+    }
+
+    if (users.department) {
+      console.log("Atualizando Departamento");
+      await this.updateDepartment(user, users.department);
+    }
     // Salva e retorna o usuário atualizado
     return await this.userRepository.save(user);
   }
@@ -56,24 +74,24 @@ class UpdateUsersService {
 
     // Verifica se o email passado é o mesmo já cadastrado
     if (user.email === email) {
-        console.log("O email é o mesmo, nenhuma atualização necessária.");
-        return { success: true, message: "O email já está cadastrado no usuário." };
+      console.log("O email é o mesmo, nenhuma atualização necessária.");
+      return { success: true, message: "O email já está cadastrado no usuário." };
     }
 
     // Verifica se o novo email já está em uso por outro usuário
     const userWithEmail = await this.userRepository.findOne({
-        where: { email },
+      where: { email },
     });
 
     if (userWithEmail) {
-        console.log("Conflito de email detectado");
-        return { success: false, message: "Email já está em uso por outro usuário." };
+      console.log("Conflito de email detectado");
+      return { success: false, message: "Email já está em uso por outro usuário." };
     }
 
     // Atualiza o email do usuário
     user.email = email;
     return { success: true, message: "Email atualizado com sucesso." };
-}
+  }
 
   updateName(user, name) {
     console.log("Verificando nome", name);
@@ -88,15 +106,49 @@ class UpdateUsersService {
     user.password = encryptedPassword;
   }
 
+  async updateType(user, type) {
+    console.log("Verificando Tipo", type);
+    if (user.type !== type) {
+      user.type = type;
+    }
+  }
+
+  async updateActive(user, active) {
+    console.log("Verificando Ativo", active);
+    if (user.active !== active) {
+      user.active = active;
+    }
+  }
+
+
+
+  async updateTelephone(user, telephone) {
+    console.log("Verificando Telefone", telephone);
+    if (user.telephone !== telephone) {
+      user.telephone = telephone;
+    }
+  }
+
+
+  async updateDepartment(user, department) {
+    console.log("Verificando Departamento", department);
+    if (user.department !== department) {
+      user.department = department;
+    }
+  }
+
+
+  
+
   async getUserById(id) {
     console.log("Buscando usuário por id:", id);  // Verifique o id usado na consulta
     const user = await show.execute(id);
 
     if (!user) {
       return { success: false, message: new AppError(AppErrorTypes.users.notFound, NOT_FOUND) };
-    }else{
+    } else {
       return user;
-    }    
+    }
   }
 }
 

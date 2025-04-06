@@ -26,7 +26,7 @@ class ShowUsersCompanieService {
 
         if (user.length > 0) {
             const companies = user.map(user => ({ ...user.companie })); // Extrai todas as empresas associadas
-            console.log(companies); // Retorna todas as companhias do usuário
+            /* console.log(companies); */ // Retorna todas as companhias do usuário
             return  companies
           } else {
             console.log('Nenhuma companhia encontrada para este usuário.');

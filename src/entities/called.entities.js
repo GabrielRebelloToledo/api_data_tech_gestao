@@ -28,33 +28,29 @@ export default new EntitySchema({
         companieIdP: {
             type: 'int',
         },
-        companieIdS: {
+        userIdResp: {
             type: 'int',
             nullable: true,
         },
-        userIdResp:{
-            type: 'int',
-            nullable: true,
-        },
-        idDepCall:{
+        idDepCall: {
             type: 'int',
         },
         reason: {
             type: 'text',
         },
-        file1:{
+        file1: {
             type: 'varchar',
             nullable: true,
         },
-        file2:{
+        file2: {
             type: 'varchar',
             nullable: true,
         },
-        file3:{
+        file3: {
             type: 'varchar',
             nullable: true,
         },
-        file4:{
+        file4: {
             type: 'varchar',
             nullable: true,
         },
@@ -63,8 +59,8 @@ export default new EntitySchema({
             default: () => 'CURRENT_TIMESTAMP',
         },
         status: {
-            type: 'varchar',
-            default:'P'
+            type: 'int',
+            default: 0
         },
         dataFinish: {
             type: 'timestamp',
@@ -78,37 +74,30 @@ export default new EntitySchema({
             target: 'User',
             joinColumn: { name: 'userId' },
             onDelete: 'CASCADE',
-            },
-            userResp: {
-                type: 'many-to-one',
-                target: 'User',
-                joinColumn: { name: 'userIdResp' },
-                onDelete: 'CASCADE',
-                },
-            primaryCompanie: {
-                type: 'many-to-one',
-                target: 'Companie',
-                joinColumn: { name: 'companieIdP' },
-                onDelete: 'CASCADE',
-            },
-            secondaryCompanie: {
-                type: 'many-to-one',
-                target: 'Companie',
-                joinColumn: { name: 'companieIdS' },
-                nullable: true,  
-                onDelete: 'CASCADE',
-            },
-            statusId: {
-                type: 'many-to-one',
-                target: 'Situation',
-                joinColumn: { name: 'status' },
-            },
-            department: {
-                type: 'many-to-one',
-                target: 'Department',
-                joinColumn: { name: 'idDepCall' }
-            },
+        },
+        userResp: {
+            type: 'many-to-one',
+            target: 'User',
+            joinColumn: { name: 'userIdResp' },
+            onDelete: 'CASCADE',
+        },
+        primaryCompanie: {
+            type: 'many-to-one',
+            target: 'Companie',
+            joinColumn: { name: 'companieIdP' },
+            onDelete: 'CASCADE',
+        },
+        statusId: {
+            type: 'many-to-one',
+            target: 'Status',
+            joinColumn: { name: 'status' },
+        },
+        department: {
+            type: 'many-to-one',
+            target: 'Department',
+            joinColumn: { name: 'idDepCall' }
+        },
     }
 
-    
+
 });

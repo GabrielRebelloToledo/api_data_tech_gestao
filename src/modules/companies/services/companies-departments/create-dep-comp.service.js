@@ -15,12 +15,12 @@ class CreateDepCompanieService {
     
       async execute({ departmentId, companieId }) {
         // Verificar se o usuário já existe
-         const companieExists = await this.companieRepository.findOneBy({ cnpj });
+         /* const companieExists = await this.companieRepository.findOneBy({ cnpj });
     
          if (companieExists) {
          // throw new AppError(AppErrorTypes.users.emailAlreadyInUse, CONFLICT);
           return { success: false, message: new AppError(AppErrorTypes.companie.companieAlreadyInUse, CONFLICT) };
-        }
+        } */
     
         
         // Criar o novo usuário
@@ -30,7 +30,7 @@ class CreateDepCompanieService {
     
         // Salvar no banco
        const companieCreate = await this.companieRepository.save(companie);
-        console.log(companieCreate)
+        /* console.log(companieCreate) */
         // Retornar a empresa cadastrada
         return companie;
       }

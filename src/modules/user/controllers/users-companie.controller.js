@@ -9,16 +9,16 @@ import ListUsersService from '../services/companies/list-users-companie.service.
 
 class UsersCompanieController {
   async create(request, response) {
-    
-     console.log(request.body); 
 
-    const { userId, companieId} = request.body;
+   /*  console.log(request.body); */
+
+    const { userId, companieId } = request.body;
 
     const createUsersCompanieService = container.resolve(CreateUsersCompanieService);
 
-    const userCompanie =  await createUsersCompanieService.execute({ userId, companieId });
+    const userCompanie = await createUsersCompanieService.execute({ userId, companieId });
 
-    if(userCompanie && userCompanie.success === false){
+    if (userCompanie && userCompanie.success === false) {
       return response.status(BAD_REQUEST).json({ message: user.message });
     }
 
@@ -27,7 +27,7 @@ class UsersCompanieController {
 
   async show(request, response) {
 
-    const { id } = request.params;
+    const { id } = request.params; 
 
     const showUsersCompanieService = container.resolve(ShowUsersCompanieService);
 
@@ -43,7 +43,7 @@ class UsersCompanieController {
   }
 
 
-   async update(request, response) {
+  async update(request, response) {
     const { id } = request.params;
     const { name, email, password } = request.body;
 
@@ -55,8 +55,8 @@ class UsersCompanieController {
       email,
       password
     });
-    
-    if(user && user.success === false){
+
+    if (user && user.success === false) {
       return response.status(BAD_REQUEST).json({ message: user.message });
     }
 
@@ -64,12 +64,12 @@ class UsersCompanieController {
   }
 
 
-   async delete(request, response) {
+  async delete(request, response) {
 
-    const { id } = request.params;
+    const { id, idcomp } = request.params;
     const deleteUsersService = container.resolve(DeleteUsersCompanieService);
 
-    await deleteUsersService.execute(id);
+    await deleteUsersService.execute(id, idcomp);
 
     return response.status(NO_CONTENT).json();
   }

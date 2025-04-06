@@ -5,17 +5,33 @@ import ensureAuthorized from '../../../shared/middlewares/ensure-authorized.midd
 import UserType from '../../user/enums/EUsers.js';
 
 const departmentRoutes = express.Router();
-departmentRoutes.post(
-    '/', 
-     /* ensureAuthenticated,
-     ensureAuthorized([UserType.ADMIN]), */
-     DepartmentsController.create
 
-);
-departmentRoutes.delete('/delete/:id', DepartmentsController.delete);
-departmentRoutes.put('/update/:id', DepartmentsController.update);
-departmentRoutes.get('/show/:id', DepartmentsController.show);
-departmentRoutes.get('/list', DepartmentsController.list);
+    departmentRoutes.post(
+        '/',
+        ensureAuthenticated,
+        ensureAuthorized([UserType.ADMIN]),
+        DepartmentsController.create
+    );
+
+    departmentRoutes.delete('/delete/:id',
+     ensureAuthenticated,
+    ensureAuthorized([UserType.ADMIN]), 
+    DepartmentsController.delete);
+
+    departmentRoutes.put('/update/:id', 
+    ensureAuthenticated,
+    ensureAuthorized([UserType.ADMIN]), 
+    DepartmentsController.update);
+
+    departmentRoutes.get('/show/:id', 
+    ensureAuthenticated,
+    ensureAuthorized([UserType.ADMIN]), 
+    DepartmentsController.show);
+
+    departmentRoutes.get('/list', 
+    ensureAuthenticated,
+    ensureAuthorized([UserType.ADMIN]), 
+    DepartmentsController.list);
 
 
 

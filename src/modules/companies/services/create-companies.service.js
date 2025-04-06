@@ -30,7 +30,7 @@ class CreateCompanieService {
     
         // Salvar no banco
        const companieCreate = await this.companieRepository.save(companie);
-        console.log(companieCreate)
+        /* console.log(companieCreate) */
         // Retornar a empresa cadastrada
         return companie;
       }

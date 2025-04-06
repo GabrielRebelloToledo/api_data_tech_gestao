@@ -12,19 +12,19 @@ function ensureAuthenticated(request, _response, next) {
 
   if (!token) {
     throw new AppError(AppErrorTypes.sessions.tokenNotFound, UNAUTHORIZED);
-  }
+  } 
 
   const sanitizedToken = token.split(' ')[1];
 
   try {
     const decoded = verify(sanitizedToken, authConfig.jwt.secret);
 
-    if (!decoded || !decoded.sub) {
+    if (!decoded || !decoded.id) {
       throw new Error();
     }
 
     request.user = {
-      id: decoded.sub,
+      id: decoded.id,
     };
 
     return next();

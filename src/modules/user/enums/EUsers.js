@@ -1,8 +1,7 @@
 const UserType = {
     ADMIN: 'ADMIN',
-    EMPLOYEE: 'EMPLOYEE',
-    TUTOR: 'TUTOR',
-    STUDENT: 'STUDENT',
+    USER: 'USER',
+    GERENTE_TI: 'GERENTE_TI'
   };
   
   Object.freeze(UserType); // Impede alterações no objeto para simular um enum

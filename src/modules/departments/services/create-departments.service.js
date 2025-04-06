@@ -31,8 +31,8 @@ class CreateDepartmentService {
 
         // Salvar no banco
        const companieCreate = await this.companieRepository.save(companie);
-       console.log("Cheguei aqui")
-        console.log(companieCreate)
+      /*  console.log("Cheguei aqui")
+        console.log(companieCreate) */
         // Retornar a empresa cadastrada
         return companie;
       }

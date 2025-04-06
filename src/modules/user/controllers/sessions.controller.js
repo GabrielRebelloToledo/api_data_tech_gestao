@@ -12,7 +12,7 @@ class SessionsController {
   async signIn(request, response) {
 
     
-    console.log(request.body)
+    /* console.log(request.body) */
 
     const { email, password } = request.body;
 
@@ -26,7 +26,7 @@ class SessionsController {
     if(token && token.success === false){
       return response.status(UNAUTHORIZED).json({ message: token.message });
     } 
-    console.log(token)
+   /*  console.log(token) */
     return response.json(token);
 
   }
@@ -34,13 +34,11 @@ class SessionsController {
 
   async create(request, response) {
 
-    console.log(request.body);
-
-    const { name, email, password, type, department, telephone, companieId } = request.body;
+    const { name, email, password, type, active,telephone,department } = request.body;
 
     const createUsersService = container.resolve(CreateUsersService);
 
-    const user =  await createUsersService.execute({ name, email, password, type, department, telephone, companieId });
+    const user =  await createUsersService.execute({ name, email, password, type, active,telephone,department });
 
     if(user && user.success === false){
       return response.status(BAD_REQUEST).json({ message: user.message });
@@ -52,7 +50,7 @@ class SessionsController {
 
     const { id } = request.params;
 
-    console.log(id)
+    
 
     const showUsersService = container.resolve(ShowUsersService);
 
@@ -69,9 +67,11 @@ class SessionsController {
 
 
 
+
    async update(request, response) {
+    
     const { id } = request.params;
-    const { name, email, password, department, telephone, companieId } = request.body;
+    const { name, email, password, type, active,telephone,department  } = request.body;
 
     const updateUsersService = container.resolve(UpdateUsersService);
 
@@ -80,9 +80,10 @@ class SessionsController {
       name, 
       email, 
       password, 
-      department, 
+      type,
+      active,
       telephone, 
-      companieId
+      department
     });
     
     if(user && user.success === false){

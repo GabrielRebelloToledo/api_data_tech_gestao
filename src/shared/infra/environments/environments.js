@@ -16,7 +16,6 @@ const AppDataSource = new DataSource({
     logging: false,
     entities: ["src/entities/*{.js,.ts}"],
     migrations: ["src/migrations/*{.js,.ts}"], // Caminho para suas migrations
-    connectTimeout: 60000,
     cli: {
         migrationsDir: "src/migrations" // Diretório onde as migrations serão criadas
     }

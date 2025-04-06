@@ -8,7 +8,7 @@ const userSessions = express.Router();
 userSessions.post('/', SessionsController.signIn);
     userSessions.post(
         '/create',
-        ensureAuthenticated,
+         ensureAuthenticated,
         ensureAuthorized([UserType.ADMIN]),
         SessionsController.create
     );

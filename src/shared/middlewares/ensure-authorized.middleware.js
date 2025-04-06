@@ -17,7 +17,7 @@ function ensureAuthorized(requiredFeatures) {
      console.log("---------- ensureAuthorized ------------");
      console.log(Object.values(UserType).includes(user.type))
        // Verifica se o tipo do usuário está em UserType
-       if (Object.values(UserType).includes(user.type)) {
+       if (!Object.values(UserType).includes(user.type)) {
         throw new AppError(AppErrorTypes.sessions.insufficientPrivilege, 403);
       } 
   

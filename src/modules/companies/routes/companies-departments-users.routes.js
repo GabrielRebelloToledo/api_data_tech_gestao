@@ -17,7 +17,7 @@ const companiesDepartUsersRoutes = express.Router();
     ensureAuthorized([UserType.ADMIN]),
     CompaniesDepartUsersController.delete);
 
-    
+
     companiesDepartUsersRoutes.get('/list/:id',
     ensureAuthenticated,
     ensureAuthorized([UserType.ADMIN]),
@@ -25,7 +25,7 @@ const companiesDepartUsersRoutes = express.Router();
 
     companiesDepartUsersRoutes.get('/listdepcall/:id',
     ensureAuthenticated,
-    ensureAuthorized([UserType.ADMIN]),
+    ensureAuthorized([UserType.ADMIN, UserType.USER]),
     CompaniesDepartUsersController.listCalledDeps);
 
 

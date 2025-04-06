@@ -12,12 +12,12 @@ const companiesDepartUsersRoutes = express.Router();
         ensureAuthorized([UserType.ADMIN]),
         CompaniesDepartUsersController.create
     );
-
     companiesDepartUsersRoutes.delete('/delete/:id',
     ensureAuthenticated,
     ensureAuthorized([UserType.ADMIN]),
     CompaniesDepartUsersController.delete);
 
+    
     companiesDepartUsersRoutes.get('/list/:id',
     ensureAuthenticated,
     ensureAuthorized([UserType.ADMIN]),

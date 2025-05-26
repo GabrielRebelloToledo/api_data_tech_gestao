@@ -4,6 +4,7 @@ import Called from '../../../../entities/called.entities.js';  // Sua entidade d
 import AppErrorTypes from '../../../../shared/errors/app-error-types.js';
 import { NOT_FOUND } from '../../../../shared/infra/constants/http-status-code.constants.js';
 
+import { getConsulta } from './called_all_sql.js';
 
 class ListCompaniesService {
     constructor() {
@@ -86,13 +87,16 @@ class ListCompaniesService {
 
     async executeAll(userId, userType, departmentId, companyId) {
 
-        const calleds = await this.companieCalled.find({
+    /*     const calleds = await this.companieCalled.find({
             where: [
             { companieIdP: companyId, user: { department: departmentId } }, // Chamados criados pelo usuário
             { userIdResp: userId  } // Chamados resolvidos pelo usuário
             ],
             relations: ['primaryCompanie', 'user', 'statusId']
-        });
+        }); */
+
+        const query = getConsulta();
+        const calleds = await AppDataSource.query(query, userId);
 
 
         if (!calleds) {

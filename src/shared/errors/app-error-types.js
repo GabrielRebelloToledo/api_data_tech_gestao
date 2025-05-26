@@ -1,7 +1,7 @@
 const AppErrorTypes = {
     sessions: {
       invalidCredentials:
-        'The provided credentials are invalid. Please check your email and password.',
+        'As credenciais fornecidas são inválidas. Verifique seu e-mail e senha.',
       tokenNotFound:
         'The authentication token was not found. Please log in again.',
       invalidToken:

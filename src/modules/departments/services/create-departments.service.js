@@ -8,34 +8,36 @@ const hashProvider = new HashProvider();
 
 
 class CreateDepartmentService {
-    constructor() {
-        // Repositório do TypeORM para a entidade Userx
-        this.companieRepository = AppDataSource.getRepository(Department);
-      }
-    
-      async execute({ department }) {
-        // Verificar se o usuário já existe
-         const companieExists = await this.companieRepository.findOneBy({ department });
-    
-         if (companieExists) {
-         // throw new AppError(AppErrorTypes.users.emailAlreadyInUse, CONFLICT);
-          return { success: false, message: new AppError(AppErrorTypes.companie.companieAlreadyInUse, CONFLICT) };
-        }
-    
-        
-        // Criar o novo usuário
-        const companie = this.companieRepository.create({
-          department
-        });
-        
+  constructor() {
+    // Repositório do TypeORM para a entidade Userx
 
-        // Salvar no banco
-       const companieCreate = await this.companieRepository.save(companie);
-      /*  console.log("Cheguei aqui")
-        console.log(companieCreate) */
-        // Retornar a empresa cadastrada
-        return companie;
-      }
+
+      this.companieRepository = AppDataSource.getRepository(Department);
+  }
+
+  async execute({ department }) {
+    // Verificar se o usuário já existe
+    const companieExists = await this.companieRepository.findOneBy({ department });
+
+    if (companieExists) {
+      // throw new AppError(AppErrorTypes.users.emailAlreadyInUse, CONFLICT);
+      return { success: false, message: new AppError(AppErrorTypes.companie.companieAlreadyInUse, CONFLICT) };
+    }
+
+
+    // Criar o novo usuário
+    const companie = this.companieRepository.create({
+      department
+    });
+
+
+    // Salvar no banco
+    const companieCreate = await this.companieRepository.save(companie);
+    /*  console.log("Cheguei aqui")
+      console.log(companieCreate) */
+    // Retornar a empresa cadastrada
+    return companie;
+  }
 }
 
 export default CreateDepartmentService;

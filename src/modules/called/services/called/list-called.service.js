@@ -5,6 +5,7 @@ import AppErrorTypes from '../../../../shared/errors/app-error-types.js';
 import { NOT_FOUND } from '../../../../shared/infra/constants/http-status-code.constants.js';
 
 import { getConsulta } from './called_all_sql.js';
+import { getConsultaResponsible } from './called_responsible.js';
 
 class ListCompaniesService {
     constructor() {
@@ -12,7 +13,7 @@ class ListCompaniesService {
         this.companieCalled = AppDataSource.getRepository(Called);
     }
 
-    async executePendente(userId, userType, departmentId, companyId) {
+    async executePendente(userId) {
 
         const calleds = await this.companieCalled
             .createQueryBuilder("c")
@@ -42,7 +43,7 @@ class ListCompaniesService {
         return calleds;
     }
 
-    async executeMe(userId, userType, departmentId, companyId) {
+    async executeMe(userId) {
 
         const calleds = await this.companieCalled
             .createQueryBuilder("c")
@@ -70,13 +71,11 @@ class ListCompaniesService {
     }
 
 
-    async executeResponsible(userId, userType, departmentId, companyId) {
+    async executeResponsible(userId) {
 
-        const calleds = await this.companieCalled.find({
-            where: { userIdResp: userId, statusId: { close: 'N'} },
-            relations: ['primaryCompanie', 'user', 'statusId']
-        });
 
+        const query = getConsultaResponsible();
+        const calleds = await AppDataSource.query(query, userId);
 
         if (!calleds) {
             console.error("Não encontrado chamado responsavel !", NOT_FOUND);
@@ -85,19 +84,10 @@ class ListCompaniesService {
         return calleds;
     }
 
-    async executeAll(userId, userType, departmentId, companyId) {
-
-    /*     const calleds = await this.companieCalled.find({
-            where: [
-            { companieIdP: companyId, user: { department: departmentId } }, // Chamados criados pelo usuário
-            { userIdResp: userId  } // Chamados resolvidos pelo usuário
-            ],
-            relations: ['primaryCompanie', 'user', 'statusId']
-        }); */
+    async executeAll(userId) {
 
         const query = getConsulta();
         const calleds = await AppDataSource.query(query, userId);
-
 
         if (!calleds) {
             console.error("Não encontrado todos chamados !", NOT_FOUND);

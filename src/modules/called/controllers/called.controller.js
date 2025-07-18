@@ -12,24 +12,25 @@ import UpdateCallService from '../services/called/update-called.service.js';
 class CalledController {
   async create(request, response) {
 
-    /* console.log(request.body); */
+    console.log(request.body);
 
-    const { userId, companieIdP, companieIdS, idDepCall, email, telephone, reason, file1, file2, file3, file4, status } = request.body;
+    const { userId, companieIdP,  idDepCall, telephone, anydesk, reason, file1, file2, file3, file4, status, emailscopy } = request.body;
 
     const createCalledService = container.resolve(CreateCalledService);
 
-    const called = await createCalledService.execute({ userId, companieIdP, companieIdS, idDepCall, email, telephone, reason, file1, file2, file3, file4, status });
+    const called = await createCalledService.execute({ userId, companieIdP,  idDepCall, telephone, anydesk, reason, file1, file2, file3, file4, status, emailscopy });
 
     if (called && called.success === false) {
       return response.status(BAD_REQUEST).json({ message: called.message });
     }
 
+
     return response.json(called);
   }
 
   async listm(request, response) {
-   /*  console.log("Meus Chamados!")
-    console.log(request.params) */
+    /*  console.log("Meus Chamados!")
+     console.log(request.params) */
     const { id, type, department, companieId } = request.params;
     const listCalledPendentService = container.resolve(ListCalledPendentsService);
     const called = await listCalledPendentService.executeMe(id, type, department, companieId);
@@ -66,7 +67,7 @@ class CalledController {
 
     const { id } = request.params;
 
- /*    console.log(id) */
+    /*    console.log(id) */
 
     const showCallService = container.resolve(ShowCallService);
 

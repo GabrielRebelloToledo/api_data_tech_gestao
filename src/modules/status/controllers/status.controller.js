@@ -36,10 +36,14 @@ class StatusController {
   }
 
   async show(request, response) {
-    const showService = container.resolve(ShowService);
+
+    const zipName = `relatorio-${Date.now()}.zip`;
+    const zipPath = path.join(__dirname, '..', 'temp', zipName);
+
+    /* const showService = container.resolve(ShowService);
     const show = await showService.execute(request.params.statusId);
-    /*  console.log(show) */
-    return response.json(show);
+
+    return response.json(show); */
   }
 
   async list(request, response) {

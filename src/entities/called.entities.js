@@ -35,6 +35,16 @@ export default new EntitySchema({
         idDepCall: {
             type: 'int',
         },
+        emailscopy: {
+            type: 'varchar',
+            nullable: true,
+        },
+        anydesk: {
+            type: 'varchar',
+        },
+        telephone: {
+            type: 'varchar',
+        },
         reason: {
             type: 'text',
         },

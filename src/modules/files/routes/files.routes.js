@@ -4,13 +4,22 @@ import ensureAuthenticated from '../../../shared/middlewares/ensure-authenticate
 import ensureAuthorized from '../../../shared/middlewares/ensure-authorized.middleware.js'
 import UserType from '../../user/enums/EUsers.js';
 import multer from 'multer';
+import fs from 'fs';
 
 const filesRoutes = express.Router();
 
 
+const UPLOADS_PATH = `/opt/data/uploads/gestao`;
+
+
+// Cria a pasta se ela não existir
+/* if (!fs.existsSync(UPLOADS_PATH)) {
+    fs.mkdirSync(UPLOADS_PATH, { recursive: true });
+} */
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'src/modules/files/uploads'); // Pasta onde os arquivos serão salvos
+        cb(null, process.env.CAMINHOFILES + '/gestao'); // Pasta onde os arquivos serão salvos
     },
     filename: (req, file, cb) => {
         // Cria um nome único para o arquivo, mantendo a extensão original

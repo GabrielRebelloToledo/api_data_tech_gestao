@@ -20,7 +20,7 @@ class FilesController {
         console.log(request.params.filename)
 
         const filename = request.params.filename;
-        const filePath = path.join('src/modules/files', 'uploads', filename);
+        const filePath = path.join(process.env.CAMINHOFILES + '/gestao', 'uploads', filename);
 
         if (fs.existsSync(filePath)) {
             fs.unlink(filePath, (err) => {
@@ -30,7 +30,7 @@ class FilesController {
                     response.status(500).json({ error: 'Erro ao excluir arquivo' });
                 } else {
 
-                    
+
                     console.log('Arquivo excluído com sucesso');
                     response.status(200).json({ message: 'Arquivo excluído com sucesso' });
                 }
@@ -45,7 +45,7 @@ class FilesController {
 
         const { fileName } = request.params;
 
-        const filePath = path.resolve('src/modules/files', 'uploads', fileName);
+        const filePath = path.resolve(process.env.CAMINHOFILES + '/gestao', 'uploads', fileName);
 
         if (fs.existsSync(filePath)) {
             const fileName = path.basename(filePath);

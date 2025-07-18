@@ -12,17 +12,12 @@ import calledRoutes from './src/modules/called/routes/called.routes.js';
 import depComp from './src/modules/companies/routes/companies-departments.routes.js';
 import departmentRoutes from './src/modules/departments/routes/departments.routes.js';
 import statusRoutes from './src/modules/status/routes/status.routes.js';
-
 import companiesDepartUsersRoutes from './src/modules/companies/routes/companies-departments-users.routes.js';
+import reportCab from './src/modules/reports/routes/report.routes.js';
+import reportFiles from './src/modules/reports/routes/report-file.routes.js';
 import path from "path";
-
-
 import corsConfig from './src/config/cors.config.js';
-
-
-
 import uploadRoutes from './src/modules/files/routes/files.routes.js';
-
 import cors from 'cors';
 
 
@@ -64,6 +59,9 @@ app.use('/api/departments', departmentRoutes);
 app.use('/api/compdepuser', companiesDepartUsersRoutes);
 
 app.use('/api/status', statusRoutes);
+
+app.use('/api/report', reportCab);
+app.use('/api/report/files', reportFiles);
 
 // Inicializar o banco de dados
 initializeDatabase();

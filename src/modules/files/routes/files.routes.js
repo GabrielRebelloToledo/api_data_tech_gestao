@@ -9,13 +9,11 @@ import fs from 'fs';
 const filesRoutes = express.Router();
 
 
-const UPLOADS_PATH = `/opt/data/uploads/gestao`;
-
 
 // Cria a pasta se ela não existir
-/* if (!fs.existsSync(UPLOADS_PATH)) {
-    fs.mkdirSync(UPLOADS_PATH, { recursive: true });
-} */
+if (!fs.existsSync(process.env.CAMINHOFILES + '/gestao')) {
+    fs.mkdirSync(process.env.CAMINHOFILES + '/gestao', { recursive: true });
+} 
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -46,5 +44,6 @@ filesRoutes.delete('/delete/:filename',
 
 
 filesRoutes.get('/show/:fileName', FilesController.show);
+
 
 export default filesRoutes;

@@ -15,7 +15,7 @@ export function getConsultaEmailInicial() {
                 c.file1,
                 c.file2,
                 c.file3,
-                c.file4,a
+                c.file4,
                 c2.name,
                 u.name as usuario,
                 (SELECT

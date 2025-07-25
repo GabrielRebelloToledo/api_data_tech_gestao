@@ -52,9 +52,7 @@ class CreateCalledDetailsService {
   async updateStatusCall(status, id) {
 
     const data = new Date();
-
     const called = await this.calledRepository.findOneBy({ id });
-
     const showstatus = await this.StatusRepository.findOne({ where: { id: status } });
 
     // Verificando se o chamado foi encontrado
@@ -62,7 +60,6 @@ class CreateCalledDetailsService {
       console.error(`Chamado com id ${id} não encontrado.`);
       return null;  // Retorna null caso não tenha encontrado o chamado
     }
-
 
     if (showstatus.close === "S") {
       called.dataFinish = data;

@@ -2,13 +2,11 @@ import { EntitySchema } from 'typeorm';
 
 
 export class ReportArquivos {
-    constructor(id, name, cnpj, adress, email, telephone) {
+    constructor(id, idCabReport, arquivo, mestre) {
         this.id = id;
-        this.name = name;
-        this.cnpj = cnpj;
-        this.adress = adress;
-        this.email = email;
-        this.telephone = telephone;
+        this.idCabReport = idCabReport;
+        this.arquivo = arquivo;
+        this.mestre = mestre;
     }
 }
 

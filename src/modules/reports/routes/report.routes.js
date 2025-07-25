@@ -31,6 +31,16 @@ reportRoutes.post('/update/:id',
     ensureAuthorized([UserType.ADMIN]),
     ReportController.update);
 
+reportRoutes.get('/show/parameters/:id',
+    /*  ensureAuthenticated,
+     ensureAuthorized([UserType.ADMIN]), */
+    ReportController.getParams);
+
+
+reportRoutes.post('/show/gerar/:id',
+    /*  ensureAuthenticated,
+     ensureAuthorized([UserType.ADMIN]), */
+    ReportController.getRelatorio);
 
 
 export default reportRoutes;

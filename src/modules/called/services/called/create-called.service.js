@@ -69,7 +69,7 @@ class CreateCalledService {
     const usuarioinfo = getCalled[0].usuario;
     const dataFechamento = getCalled[0].dataFinish;
 
-    const emailsEnvio = emailUserAbert + ", " + emails + ", " + emailsCopia;
+    const emailsEnvio = emailUserAbert + ", " + emails + ", " + emailsCopia.replace(";", ",");
 
 
     console.log(emailsEnvio);
@@ -172,7 +172,7 @@ class CreateCalledService {
     
     `;
 
-   await createEmailService.execute(emailsEnvio, mensagem, 'Novo Chamado - DATATECH SISTEMAS!');
+    await createEmailService.execute(emailsEnvio, mensagem, 'Novo Chamado - DATATECH SISTEMAS!');
 
   }
 }

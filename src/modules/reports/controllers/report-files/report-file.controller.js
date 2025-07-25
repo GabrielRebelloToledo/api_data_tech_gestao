@@ -20,7 +20,7 @@ class ReportFileController {
     if (!idCabReport) {
       return response.status(400).json({ erro: 'idCabReport não informado' });
     }
-    const novaPasta = path.join(process.env.CAMINHOFILES + '/relatorios', idCabReport);
+    const novaPasta = path.join(process.env.CAMINHOFILES,'relatorios', idCabReport);
 
     if (!fs.existsSync(novaPasta)) {
       fs.mkdirSync(novaPasta, { recursive: true });

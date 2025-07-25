@@ -20,7 +20,7 @@ class FilesController {
         console.log(request.params.filename)
 
         const filename = request.params.filename;
-        const filePath = path.join(process.env.CAMINHOFILES + '/gestao', 'uploads', filename);
+        const filePath = path.join(process.env.CAMINHOFILES, 'gestao', filename);
 
         if (fs.existsSync(filePath)) {
             fs.unlink(filePath, (err) => {
@@ -45,7 +45,7 @@ class FilesController {
 
         const { fileName } = request.params;
 
-        const filePath = path.resolve(process.env.CAMINHOFILES + '/gestao', 'uploads', fileName);
+        const filePath = path.resolve(process.env.CAMINHOFILES, 'gestao', fileName);
 
         if (fs.existsSync(filePath)) {
             const fileName = path.basename(filePath);

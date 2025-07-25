@@ -4,13 +4,20 @@ import ensureAuthenticated from '../../../shared/middlewares/ensure-authenticate
 import ensureAuthorized from '../../../shared/middlewares/ensure-authorized.middleware.js'
 import UserType from '../../user/enums/EUsers.js';
 import multer from 'multer';
+import fs from 'fs';
 
 const filesRoutes = express.Router();
 
 
+
+// Cria a pasta se ela não existir
+if (!fs.existsSync(process.env.CAMINHOFILES + '/gestao')) {
+    fs.mkdirSync(process.env.CAMINHOFILES + '/gestao', { recursive: true });
+} 
+
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'src/modules/files/uploads'); // Pasta onde os arquivos serão salvos
+        cb(null, process.env.CAMINHOFILES + '/gestao'); // Pasta onde os arquivos serão salvos
     },
     filename: (req, file, cb) => {
         // Cria um nome único para o arquivo, mantendo a extensão original
@@ -37,5 +44,6 @@ filesRoutes.delete('/delete/:filename',
 
 
 filesRoutes.get('/show/:fileName', FilesController.show);
+
 
 export default filesRoutes;

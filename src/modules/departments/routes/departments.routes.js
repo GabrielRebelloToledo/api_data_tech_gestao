@@ -28,7 +28,7 @@ const departmentRoutes = express.Router();
     ensureAuthorized([UserType.ADMIN]), 
     DepartmentsController.show);
 
-    departmentRoutes.get('/list', 
+    departmentRoutes.get('/dep/list', 
     ensureAuthenticated,
     ensureAuthorized([UserType.ADMIN]), 
     DepartmentsController.list);

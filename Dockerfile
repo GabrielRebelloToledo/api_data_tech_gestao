@@ -32,6 +32,8 @@ COPY . .
 # Corrige permissões de tudo para o usuário node
 RUN chown -R node:node /usr/src/app
 
+# Cria pasta fora do app com permissões para o usuário node
+RUN mkdir -p /opt/data/uploads/gestao && chown -R node:node /opt/data/uploads
 
 # Run the application as a non-root user.
 USER node
